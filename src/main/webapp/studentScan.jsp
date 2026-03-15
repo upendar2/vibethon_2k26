@@ -74,24 +74,41 @@
 
     <script>
     function submitData() {
-        const formData = new URLSearchParams(new FormData(document.getElementById('attForm')));
-        Swal.fire({ title: 'Verifying...', didOpen: () => Swal.showLoading() });
+        const formElement = document.getElementById('attForm');
+        const formData = new URLSearchParams(new FormData(formElement));
 
-        fetch('${pageContext.request.contextPath}/SubmitQRServlet', {
+        Swal.fire({ 
+            title: 'Verifying...', 
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading() 
+        });
+
+        // We use the absolute path to avoid "Connection Failed"
+        fetch('<%= request.getContextPath() %>/SubmitQRServlet', {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
             body: formData
         })
         .then(async res => {
             const data = await res.json();
             if(res.ok) {
-                Swal.fire('Success', data.message, 'success').then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: data.message
+                }).then(() => {
                     window.location.href = 'attendanceSuccess.jsp';
                 });
             } else {
                 Swal.fire('Error', data.message, 'error');
             }
         })
-        .catch(() => Swal.fire('Error', 'Connection failed', 'error'));
+        .catch((error) => {
+            console.error('Error:', error);
+            Swal.fire('Error', 'Connection failed. Please check your internet or scan again.', 'error');
+        });
     }
     </script>
 </body>
