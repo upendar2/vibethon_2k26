@@ -28,23 +28,26 @@
         <p style="color: #ef4444; font-weight: bold;"><i class="fas fa-stopwatch"></i> This QR is dynamic and valid for this session only.</p>
     </div>
 
-    <script>
-    // This detects the live URL automatically (localhost or Render)
+<script>
     var siteBaseUrl = window.location.origin; 
     var projectPath = "${pageContext.request.contextPath}";
     
-    // Construct the full path to the student scanning page
-    var qrData = siteBaseUrl + projectPath + "/studentScan.jsp?sid=<%= sid %>&ts=<%= timestamp %>";
+    // Generate current timestamp
+    var startTime = Date.now(); 
     
-    console.log("QR Link: " + qrData); // Verify this in your browser console
+    // The URL now includes the 'ts' (timestamp) parameter
+    var qrData = siteBaseUrl + projectPath + "/studentScan.jsp?sid=<%= sid %>&ts=" + startTime;
 
     new QRCode(document.getElementById("qrcode-canvas"), {
         text: qrData,
         width: 250,
-        height: 250,
-        colorDark : "#000000",
-        colorLight : "#ffffff"
+        height: 250
     });
+
+    // Optional: Auto-refresh the page every 3 minutes to generate a new valid QR
+    setTimeout(function() {
+        location.reload();
+    }, 180000); 
 </script>
 </body>
 </html>
