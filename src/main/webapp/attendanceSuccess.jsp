@@ -76,7 +76,7 @@
         <h2>Attendance Recorded!</h2>
         <p>Your presence has been successfully verified and logged into the portal. You may now close this window or return to the dashboard.</p>
         
-        <a href="index.jsp" class="home-btn">
+        <a href="login/login.jsp" class="home-btn">
             <i class="fas fa-home"></i> Back to Home
         </a>
         
