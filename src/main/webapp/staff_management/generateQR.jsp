@@ -34,7 +34,7 @@
     var projectPath = "${pageContext.request.contextPath}";
     
     // Construct the full path to the student scanning page
-    var qrData = siteBaseUrl + projectPath + "/staff_management/studentScan.jsp?sid=<%= sid %>&ts=<%= timestamp %>";
+    var qrData = siteBaseUrl + projectPath + "/studentScan.jsp?sid=<%= sid %>&ts=<%= timestamp %>";
     
     console.log("QR Link: " + qrData); // Verify this in your browser console
 
