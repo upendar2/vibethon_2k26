@@ -1,0 +1,191 @@
+package com.example;
+import jakarta.mail.*;
+import jakarta.mail.internet.*;
+import java.util.Properties;
+import java.util.List;
+import java.util.Collections;
+import jakarta.activation.DataHandler;
+import jakarta.mail.util.ByteArrayDataSource;
+import java.io.UnsupportedEncodingException;
+import java.io.IOException;
+
+// SendGrid Imports
+import com.sendgrid.*;
+import com.sendgrid.helpers.mail.objects.*;
+import com.sendgrid.helpers.mail.objects.Content;
+
+public class EmailSender {
+
+    // Environment Variables - Populated from Render or Local System
+    private static final String FROM_NAME = System.getenv("FROM_NAME");
+    private static final String FROM_EMAIL = System.getenv("FROM_EMAIL");
+    
+    // SMTP Config (Used for Local Testing)
+    private static final String SMTP_HOST = System.getenv("SMTP_HOST");
+    private static final String SMTP_PORT = System.getenv("SMTP_PORT");
+    private static final String SMTP_PASSWORD = System.getenv("SMTP_PASSWORD");
+
+    // SendGrid Config (Used for Render Production)
+    private static final String SENDGRID_API_KEY = System.getenv("SENDGRID_API_KEY");
+    private static final boolean IS_RENDER = System.getenv("RENDER") != null;
+
+    /**
+     * Inner class to handle email attachments.
+     */
+    public static class EmailAttachment {
+        private final byte[] contentBytes;
+        private final String filename;
+        private final String mimeType;
+
+        public EmailAttachment(byte[] contentBytes, String filename, String mimeType) {
+            this.contentBytes = contentBytes;
+            this.filename = filename;
+            this.mimeType = mimeType;
+        }
+        public byte[] getContentBytes() { return contentBytes; }
+        public String getFilename() { return filename; }
+        public String getMimeType() { return mimeType; }
+    }
+
+    // --- Public Interface Methods ---
+
+    public static boolean sendEmail(String to, String subject, String body) {
+        return sendEmailInternal(to, subject, body, null, Collections.emptyList());
+    }
+
+    public static boolean sendEmail(String to, String subject, String textBody, List<EmailAttachment> attachments) {
+        return sendEmailInternal(to, subject, textBody, null, attachments);
+    }
+
+    public static boolean sendEmail(String to, String subject, String textBody, String htmlBody, List<EmailAttachment> attachments) {
+        return sendEmailInternal(to, subject, textBody, htmlBody, attachments);
+    }
+
+    // --- Core Routing Logic ---
+    private static boolean sendEmailInternal(String to, String subject, String textBody, String htmlBody, List<EmailAttachment> attachments) {
+        if (to == null || to.trim().isEmpty()) {
+            System.err.println("[EMAIL] Recipient address is null or empty.");
+            return false;
+        }
+
+        // Wrap the content in our Udbhav 2K26 HTML Theme
+        String finalHtml = getThemedHtml(htmlBody != null ? htmlBody : textBody);
+
+        if (IS_RENDER && SENDGRID_API_KEY != null) {
+            System.out.println("[EMAIL] Detected Render Environment. Routing via SendGrid API...");
+            return sendViaSendGrid(to, subject, textBody, finalHtml, attachments);
+        } else {
+            System.out.println("[EMAIL] Detected Local Environment. Routing via SMTP...");
+            return sendViaSMTP(to, subject, textBody, finalHtml, attachments);
+        }
+    }
+
+    // --- PRODUCTION: SENDGRID API METHOD ---
+    private static boolean sendViaSendGrid(String to, String subject, String textBody, String htmlBody, List<EmailAttachment> attachments) {
+        try {
+            com.sendgrid.helpers.mail.objects.Email from = new com.sendgrid.helpers.mail.objects.Email(FROM_EMAIL, FROM_NAME);
+            com.sendgrid.helpers.mail.objects.Email recipient = new com.sendgrid.helpers.mail.objects.Email(to);
+            Content textContent = new Content("text/plain", textBody);
+            
+            com.sendgrid.helpers.mail.Mail mail = new com.sendgrid.helpers.mail.Mail(from, subject, recipient, textContent);
+            mail.addContent(new Content("text/html", htmlBody));
+
+            for (EmailAttachment att : attachments) {
+                Attachments sgA = new Attachments();
+                sgA.setContent(java.util.Base64.getEncoder().encodeToString(att.getContentBytes()));
+                sgA.setType(att.getMimeType());
+                sgA.setFilename(att.getFilename());
+                sgA.setDisposition("attachment");
+                mail.addAttachments(sgA);
+            }
+
+            SendGrid sg = new SendGrid(SENDGRID_API_KEY);
+            Request request = new Request();
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+
+            // Explicitly use com.sendgrid.Response to avoid import conflicts
+            com.sendgrid.Response response = sg.api(request);
+
+            if (response.getStatusCode() >= 200 && response.getStatusCode() < 300) {
+                System.out.println("[SendGrid] Success! Email delivered to " + to);
+                return true;
+            } else {
+                System.err.println("[SendGrid] Error: " + response.getStatusCode());
+                System.err.println("Body: " + response.getBody());
+                return false;
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    // --- LOCAL: SMTP METHOD (Gmail/Standard) ---
+    private static boolean sendViaSMTP(String to, String subject, String textBody, String htmlBody, List<EmailAttachment> attachments) {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", SMTP_HOST);
+        props.put("mail.smtp.port", SMTP_PORT != null ? SMTP_PORT : "587");
+
+        Session session = Session.getInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(FROM_EMAIL, SMTP_PASSWORD);
+            }
+        });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(FROM_EMAIL, FROM_NAME, "UTF-8"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            message.setSubject(subject);
+
+            Multipart multipart = new MimeMultipart();
+            
+            // Body Part
+            MimeBodyPart htmlPart = new MimeBodyPart();
+            htmlPart.setContent(htmlBody, "text/html; charset=utf-8");
+            multipart.addBodyPart(htmlPart);
+
+            // Attachment Parts
+            for (EmailAttachment att : attachments) {
+                MimeBodyPart attachPart = new MimeBodyPart();
+                attachPart.setDataHandler(new DataHandler(new ByteArrayDataSource(att.getContentBytes(), att.getMimeType())));
+                attachPart.setFileName(att.getFilename());
+                multipart.addBodyPart(attachPart);
+            }
+
+            message.setContent(multipart);
+            Transport.send(message);
+            return true;
+        } catch (MessagingException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // --- THEME: UDBHAV 2K26 DESIGN ---
+    private static String getThemedHtml(String bodyContent) {
+        return "<html>" +
+               "<body style='font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;'>" +
+               "  <div style='max-width: 600px; margin: auto; background-color: #ffffff; border: 1px solid #ddd;'>" +
+               "    <div style='padding: 20px; color: #333; line-height: 1.6;'>" + bodyContent + "</div>" +
+               "    <div style='background-color: #5a0a1a; padding: 30px; text-align: center; color: #ffffff; border-top: 4px solid #d4af37;'>" +
+               "      <h2 style='color: #d4af37; margin: 0; font-size: 24px; text-transform: uppercase;'>Udbhav 2K26</h2>" +
+               "      <p style='margin: 10px 0; font-size: 14px; opacity: 0.9;'>Vibethon Programming Concept | Andhra University</p>" +
+               "      <div style='margin: 20px 0;'>" +
+               "        <a href='#' style='margin: 0 10px;'><img src='https://cdn-icons-png.flaticon.com/32/733/733547.png' width='24' alt='FB' style='filter: invert(1);'></a>" +
+               "        <a href='#' style='margin: 0 10px;'><img src='https://cdn-icons-png.flaticon.com/32/733/733579.png' width='24' alt='TW' style='filter: invert(1);'></a>" +
+               "        <a href='#' style='margin: 0 10px;'><img src='https://cdn-icons-png.flaticon.com/32/2111/2111463.png' width='24' alt='IG' style='filter: invert(1);'></a>" +
+               "        <a href='#' style='margin: 0 10px;'><img src='https://cdn-icons-png.flaticon.com/32/3536/3536505.png' width='24' alt='IN' style='filter: invert(1);'></a>" +
+               "      </div>" +
+               "      <p style='font-size: 11px; color: #d4af37;'>&copy; 2026 Udbhav. All rights reserved.</p>" +
+               "    </div>" +
+               "  </div>" +
+               "</body>" +
+               "</html>";
+    }
+}
