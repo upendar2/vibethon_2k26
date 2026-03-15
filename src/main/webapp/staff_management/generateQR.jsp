@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>QR Session | AU IT&CA</title>
-    <%-- Inclde QRsCode librdrdy --%>
+    <%-- Inclde QRsode librdrdy --%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         .qr-card { max-width: 500px; margin: 40px auto; background: white; padding: 40px; border-radius: 15px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
@@ -34,7 +34,7 @@
     var projectPath = "${pageContext.request.contextPath}";
     
     // Construct the full path to the student scanning page
-    var qrData = siteBaseUrl + projectPath + "/studentScan.jsp?sid=<%= sid %>&ts=<%= timestamp %>";
+    var qrData = siteBaseUrl + projectPath + "/staff_management/studentScan.jsp?sid=<%= sid %>&ts=<%= timestamp %>";
     
     console.log("QR Link: " + qrData); // Verify this in your browser console
 
