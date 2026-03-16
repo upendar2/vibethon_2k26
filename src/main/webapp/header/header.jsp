@@ -11,7 +11,7 @@
             <img src="https://upload.wikimedia.org/wikipedia/en/c/c7/Andhra_University_logo.png" alt="University Logo" class="logo-img">
             <div class="university-brand">
                 <span class="univ-main">Andhra University College of Engineering</span>
-                <span class="univ-sub">Department of Information Technology and Computer Applications</span>
+                <span class="univ-sub">Department of IT & CA</span>
             </div>
         </div>
 
@@ -68,11 +68,11 @@
             if (e.matches) {
                 // Device is 768px or smaller
                 auText.innerHTML = "AUCE";
-                dept.innerHTML="Department of IT & CA";
+               // dept.innerHTML="Department of IT & CA";
             } else {
                 // Device is Desktop
                 auText.innerHTML = "Andhra University College of Engineering";
-                dept.innerHTML="Department of Information Technology and Computer Applications"
+                //dept.innerHTML="Department of Information Technology and Computer Applications"
             }
         }
     }
