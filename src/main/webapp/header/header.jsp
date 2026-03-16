@@ -35,7 +35,7 @@
                     <i class="fa-solid fa-phone"></i>
                     <span>Contact Us</span>
                 </a>
-                <a href="${pageContext.request.contextPath}/login/login.jsp" class="header-button active">
+                <a href="${pageContext.request.contextPath}/login/login.jsp" class="header-button">
                     <i class="fa-solid fa-right-to-bracket"></i>
                     <span>Login</span>
                 </a>
