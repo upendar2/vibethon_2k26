@@ -9,7 +9,7 @@
         <%-- Logo --%>
         <div class="logo-container">
             <img src="https://upload.wikimedia.org/wikipedia/en/c/c7/Andhra_University_logo.png" alt="University Logo" class="logo-img">
-            <span class="university-name" style="align-text:center;">Andhra University College of Engineering<br><span style="align-text:center;">Department of IT&CA</span></span>
+            <span class="university-name" style="align-text:center;"><p>Andhra University College of Engineering</p><br><span style="align-text:center;">Department of IT&CA</span></span>
         </div>
 
         <%-- Hamburger Menu Button (Visible only on mobile) --%>

@@ -57,7 +57,7 @@ body {
   ==========================================================================
 */
 .main-header {
-    width: 100%;
+    max-width: 100%;
     background-color: var(--text-dark);
     color: var(--text-light);
     padding: 0 1.5rem;
@@ -191,6 +191,9 @@ body {
   ==========================================================================
 */
 @media (max-width: 1000px) {
+	.main-header
+	{ max-width:100%;
+	}
     .header-nav {
         /* Keep flex row for logo and burger button alignment */
         flex-direction: row;
@@ -265,6 +268,20 @@ body {
 
     .university-name {
         font-size: 1.1rem;
+    }
+
+    .main-content {
+        padding: 2rem 0.5rem;
+    }
+}@media (max-width: 400px) {
+    
+
+    /* --- NEW MENU ITEM STYLES --- */
+    /* Restyle the links to look like menu items */
+    /* --- END NEW MENU ITEM STYLES --- */
+
+    .university-name p {
+        display:none;
     }
 
     .main-content {
