@@ -6,20 +6,22 @@
 
 <header class="main-header">
     <nav class="header-nav">
-        <%-- Logo --%>
+        <%-- Professional Logo Lockup --%>
         <div class="logo-container">
             <img src="https://upload.wikimedia.org/wikipedia/en/c/c7/Andhra_University_logo.png" alt="University Logo" class="logo-img">
-            <span class="university-name" style="align-text:center;">Andhra University College of Engineering<br><span style="align-text:center;">Department of IT&CA</span></span>
+            <div class="university-brand">
+                <span class="univ-main">Andhra University College of Engineering</span>
+                <span class="univ-sub">Department of IT&CA</span>
+            </div>
         </div>
 
-        <%-- Hamburger Menu Button (Visible only on mobile) --%>
+        <%-- Hamburger Menu Button (Kept your logic) --%>
         <button class="mobile-menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
-            <i class="fa-solid fa-bars"></i> <%-- Hamburger Icon --%>
+            <i class="fa-solid fa-bars"></i>
         </button>
 
-        <%-- Wrapper for all header buttons/actions - This will be toggled on mobile --%>
+        <%-- Wrapper for all header buttons --%>
         <div class="header-actions">
-            <%-- Main navigation buttons --%>
             <div class="header-buttons">
                 <a href="${pageContext.request.contextPath}/homepage.jsp" class="header-button">
                     <i class="fa-solid fa-house"></i>
@@ -41,18 +43,18 @@
         </div>
     </nav>
 </header>
+
 <div id="toast"></div>
-<%-- Simple JavaScript for Mobile Menu Toggle --%>
+
 <script>
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const headerActions = document.querySelector('.header-actions');
-    const headerNav = document.querySelector('.header-nav'); // Get the parent nav
+    const headerNav = document.querySelector('.header-nav');
 
     if (menuToggle && headerActions && headerNav) {
         menuToggle.addEventListener('click', () => {
             const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
             menuToggle.setAttribute('aria-expanded', !isExpanded);
-            // Toggle a class on the PARENT NAV element to control layout/visibility
             headerNav.classList.toggle('mobile-menu-open'); 
         });
     }

@@ -21,7 +21,7 @@
             border-collapse: collapse;
             margin-top: 20px;
         }
-        .data-table th {
+        .data-table th ,.header-button{
             background-color: var(--header-bg);
             color: white;
             padding: 12px;
@@ -43,12 +43,30 @@
             background: var(--light-blue-bg);
             color: var(--primary-blue);
         }
+        .btn-back {
+            padding: 8px 15px;
+            border-radius: 6px;
+            color: var(--text-label);
+            font-weight: 600;
+            text-decoration: none;
+            background-color: #e5e7eb; /* Tailwind gray-200 */
+            transition: background-color 0.2s;
+            border: 1px solid var(--border-color);
+            display: inline-flex; /* Align icon and text */
+            align-items: center;
+        }
+        .btn-back:hover {
+            background-color: #d1d5db; /* Tailwind gray-300 */
+        }
     </style>
 </head>
 <body>
     <%@ include file="admin_header.jsp" %>
 
     <main class="page-content">
+    <a href="admin_dashboard.jsp" class="btn-back mt-4 sm:mt-0">
+                    <i class="fas fa-arrow-left"></i>Back to List
+                </a>
         <div class="view-container">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h2><i class="fas fa-clipboard-list"></i> Staff-Subject Mapping</h2>

@@ -198,7 +198,9 @@
                 <% } %>
             </form>
         </div>
+        
     </div>
+    <%@ include file="../footer.jsp" %>
 
     <script>
         const table = document.getElementById('marksTable');

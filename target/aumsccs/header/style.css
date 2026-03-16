@@ -154,6 +154,46 @@ body {
 .mobile-menu-toggle:hover {
     background-color: var(--text-medium);
 }
+/* --- Add these classes to your existing CSS file --- */
+
+.university-brand {
+    display: flex;
+    flex-direction: column; /* Stacks the text vertically */
+    justify-content: center;
+    line-height: 1.2;
+}
+
+.univ-main {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-lightest);
+    white-space: nowrap;
+}
+
+.univ-sub {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-lightest); /* Or use var(--primary-blue) for a pop of color */
+    opacity: 0.9;
+}
+
+/* Fix for your mobile view (max-width: 400px) */
+@media (max-width: 400px) {
+    .univ-main {
+        font-size: 0.85rem; /* Smaller text so it fits on one line */
+    }
+    .univ-sub {
+        font-size: 0.75rem;
+    }
+    /* Removed display:none from university-name p since we use univ-main now */
+}
+
+/* Ensure the header button 'active' state looks professional */
+.header-button.active {
+    background-color: var(--primary-blue);
+    color: #ffffff;
+    border-color: var(--primary-blue);
+}
 
 /*
   ==========================================================================
@@ -191,6 +231,9 @@ body {
   ==========================================================================
 */
 @media (max-width: 1000px) {
+	.main-header
+	{ max-width:100%;
+	}
     .header-nav {
         /* Keep flex row for logo and burger button alignment */
         flex-direction: row;
@@ -265,6 +308,20 @@ body {
 
     .university-name {
         font-size: 1.1rem;
+    }
+
+    .main-content {
+        padding: 2rem 0.5rem;
+    }
+}@media (max-width: 400px) {
+    
+
+    /* --- NEW MENU ITEM STYLES --- */
+    /* Restyle the links to look like menu items */
+    /* --- END NEW MENU ITEM STYLES --- */
+
+    .university-name p {
+        display:none;
     }
 
     .main-content {

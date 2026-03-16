@@ -32,6 +32,7 @@ com\example\PhotoFileUploadServlet.class
 com\example\SaveDailyAttendanceServlet.class
 com\example\AssignStaffServlet.class
 com\example\UploadRecordsForStudents.class
+com\example\GetStaffSubjectsServlet.class
 com\example\ChangePassword.class
 com\example\DeleteUserServlet.class
 com\example\SendAttendanceAlertServlet.class

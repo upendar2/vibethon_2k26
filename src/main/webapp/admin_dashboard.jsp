@@ -264,6 +264,10 @@ try {
 					<p class="card-count">3 </p > classes
 					<h3>Attendance Reports</h3>
 				</a>
+				<a href="${pageContext.request.contextPath}/adminMarksDirectFilter.jsp" class="management-card"> <i class="fas fa-award"></i>
+					<p class="card-count"> view</p >
+					<h3>Mid Marks Reports</h3>
+				</a>
 			</div>
 		</div>
 	</main>

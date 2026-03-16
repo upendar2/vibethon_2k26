@@ -121,6 +121,7 @@ body {
     border-color: var(--accent-red);
     color: white;
 }
+ 
 
 /*
   ==========================================================================
@@ -133,6 +134,7 @@ body {
     padding: 2rem 1.5rem; /* Consistent padding */
     text-align: center;
     box-sizing: border-box; /* Consistent padding */
+    max-width:100%;
     
 }
 .footer-socials {

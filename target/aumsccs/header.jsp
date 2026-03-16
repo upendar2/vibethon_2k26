@@ -32,6 +32,15 @@
            class="<%= currentPage.endsWith("studentDetails.jsp") ? "active" : "" %>">
             Student Details
         </a>
+        
+        <a href="<%= studentHeaderContextPath %>/studentAttendance.jsp" 
+           class="<%= currentPage.endsWith("studentAttendence.jsp") ? "active" : "" %>">
+            Attendance
+        </a>
+        <a href="<%= studentHeaderContextPath %>/studentMarks.jsp" 
+           class="<%= currentPage.endsWith("studentMarks.jsp") ? "active" : "" %>">
+            Mid Marks
+        </a>
         <a href="<%= studentHeaderContextPath %>/results.jsp" 
            class="<%= currentPage.endsWith("results.jsp") ? "active" : "" %>">
             Results
