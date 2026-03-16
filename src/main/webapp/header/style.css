@@ -14,7 +14,7 @@
 
     /* Dark theme colors */
     --text-dark: #1f2937;    /* Dark gray (bg) */
-    --text-medium: rgb(255, 255, 255);  /* Medium gray (link hover bg, border) */
+    --text-medium: #4b5563;  /* Medium gray (link hover bg, border) */
     --text-light: #9ca3af;   /* Light gray (text) */
     --text-lightest: #f3f4f6; /* Off-white (title text) */
 
