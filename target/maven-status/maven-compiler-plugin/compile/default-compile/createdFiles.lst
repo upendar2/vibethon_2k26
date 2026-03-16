@@ -34,6 +34,7 @@ com\example\AssignStaffServlet.class
 com\example\UploadRecordsForStudents.class
 com\example\ChangePassword.class
 com\example\DeleteUserServlet.class
+com\example\SendAttendanceAlertServlet.class
 com\example\WhatsAppService.class
 com\example\UpdateSubjectServlet.class
 com\example\UpdateUserServlet.class

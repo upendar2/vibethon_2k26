@@ -3,10 +3,11 @@
     // Renamed variables to avoid conflict if included in other pages
     String studentHeaderUserId = (String) session.getAttribute("regdno");
     String studentHeaderUserName = (String) session.getAttribute("userName");
+    String userRoles = (String) session.getAttribute("userRole");
     String studentHeaderContextPath=request.getContextPath();
     
     // Redirect if not logged in
-    if (studentHeaderUserId == null || studentHeaderUserId.isEmpty()) {
+    if (studentHeaderUserId == null || studentHeaderUserId.isEmpty() | userRoles.equalsIgnoreCase("staff") | userRoles.equalsIgnoreCase("admin")) {
         response.sendRedirect(studentHeaderContextPath +"/login/login.jsp");
         return;
     }

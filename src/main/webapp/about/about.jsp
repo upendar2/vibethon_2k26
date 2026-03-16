@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About M.Sc. CS - University Portal</title>
+    <title>About IT&CA - Andhra University College of Engineering</title>
     
     <%-- Fonts and Icons --%>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,12 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <%-- Stylesheets --%>
-    <%-- Main layout from header folder --%>
- <%--   <link rel="stylesheet" href="${pageContext.request.contextPath}/header/style.css"> --%>
-    <%-- Specific styles for this page --%>
     <link rel="stylesheet" href="about.css">
-    
 </head>
 <body>
 
@@ -28,102 +23,82 @@
     <main class="main-content">
         <div class="about-container">
             
-            <!-- Header Section -->
             <div class="program-header">
-                <i class="fa-solid fa-laptop-code"></i>
-                <h1>M.Sc. Computer Science – ITCA Department</h1>
-                <p>A postgraduate programme designed to build strong theoretical and practical knowledge in Computer Science.</p>
+                <i class="fa-solid fa-network-wired"></i>
+                <h1>Department of Information Technology & Computer Applications (IT&CA)</h1>
+                <p>A premier hub of technical excellence under Andhra University College of Engineering (A), dedicated to shaping the future of IT professionals.</p>
             </div>
         
-            <!-- About the Programme -->
-            <h2><i class="fa-solid fa-graduation-cap"></i> About the Programme</h2>
+            <h2><i class="fa-solid fa-building-columns"></i> About the Department</h2>
             <ul class="program-details">
-                <li>Offered by the Department of Information Technology and Computer Applications (ITCA), Andhra University College of Engineering.</li>
-                <li>Focuses on modern computing technologies, software development, and research-oriented learning.</li>
+                <li>Established as a distinct department to meet the growing global demand for high-end IT and Software Engineering professionals.</li>
+                <li>Housed within the prestigious AU College of Engineering (Autonomous), it offers a blend of rigorous academics and cutting-edge technical training.</li>
+                <li>The department serves as a bridge between foundational computer science and modern industrial application development.</li>
             </ul>
         
-            <!-- Programme Objectives -->
-            <h2><i class="fa-solid fa-lightbulb"></i> Programme Objectives</h2>
+            <h2><i class="fa-solid fa-bullseye"></i> Department Objectives</h2>
             <ul class="program-details check-list">
-                <li>To equip students with advanced computing, programming, and analytical skills.</li>
-                <li>To develop problem-solving abilities for designing intelligent and efficient software solutions.</li>
-                <li>To prepare graduates for software industry roles, research careers, and competitive exams like UGC NET and GATE.</li>
-                <li>To encourage innovation, critical thinking, and lifelong learning in the field of computer science.</li>
+                <li>To deliver high-quality education in IT and Computer Applications through a modern, industry-relevant curriculum.</li>
+                <li>To foster an environment of research and innovation in emerging areas like Cloud Computing, AI, and Cybersecurity.</li>
+                <li>To bridge the gap between academia and industry through regular workshops, internships, and technical collaborations.</li>
+                <li>To cultivate ethical leadership and professional integrity among students entering the global technology workforce.</li>
             </ul>
         
-            <!-- Key Areas of Study -->
-            <h2><i class="fa-solid fa-brain"></i> Key Areas of Study</h2>
+            <h2><i class="fa-solid fa-microchip"></i> Core Areas of Expertise</h2>
             <ul class="program-details grid-list">
-                <li>Data Structures and Algorithms</li>
-                <li>Database Management Systems (DBMS)</li>
-                <li>Operating Systems and Computer Networks</li>
-                <li>Artificial Intelligence and Machine Learning</li>
-                <li>Software Engineering and Testing</li>
-                <li>Compiler Design and Automata Theory</li>
-                <li>Web Technologies and Cloud Computing</li>
-                <li>Data Mining and Big Data Analytics</li>
+                <li>Full-Stack Web Technologies</li>
+                <li>Enterprise Resource Planning (ERP)</li>
+                <li>Mobile Application Development</li>
+                <li>Cybersecurity & Digital Forensics</li>
+                <li>Big Data Analytics & Data Engineering</li>
+                <li>Internet of Things (IoT) Systems</li>
+                <li>Agile Software Development Methodologies</li>
+                <li>Network Security & Administration</li>
             </ul>
         
-            <!-- Salient Features -->
-            <h2><i class="fa-solid fa-puzzle-piece"></i> Salient Features</h2>
+            <h2><i class="fa-solid fa-server"></i> Salient Features</h2>
             <ul class="program-details check-list">
-                <li>Curriculum aligned with current industry trends and research advancements.</li>
-                <li>Experienced faculty and well-equipped computer laboratories.</li>
-                <li>Opportunity for minor and major projects to gain real-world experience.</li>
-                <li>Integration of theoretical knowledge with hands-on practice.</li>
-                <li>Encourages interdisciplinary learning and innovation.</li>
-                <li>Supports NET, GATE, and higher education preparation through academic depth.</li>
+                <li>State-of-the-art specialized laboratories with high-speed computing clusters.</li>
+                <li>Strong alumni network placed in Tier-1 Global IT companies (MNCs).</li>
+                <li>Regular Guest Lectures from industry veterans and international researchers.</li>
+                <li>Focus on Project-Based Learning (PBL) throughout the curriculum.</li>
+                <li>Autonomous status allowing for rapid curriculum updates aligned with Silicon Valley trends.</li>
+                <li>Active placement cell with a consistent track record of securing high-package offers.</li>
             </ul>
         
-            <!-- Career Opportunities -->
-            <h2><i class="fa-solid fa-briefcase"></i> Career Opportunities</h2>
+            <h2><i class="fa-solid fa-user-tie"></i> Career Pathways</h2>
             <ul class="program-details grid-list">
-                <li>Software Developer / Programmer</li>
-                <li>Data Analyst / Database Administrator</li>
-                <li>Web and Cloud Application Developer</li>
-                <li>Research Assistant / Junior Research Fellow</li>
-                <li>Assistant Professor (after UGC NET qualification)</li>
-                <li>IT Consultant / System Analyst</li>
+                <li>IT Infrastructure Manager</li>
+                <li>System Architect / Lead Developer</li>
+                <li>Cloud Solutions Engineer</li>
+                <li>Information Security Analyst</li>
+                <li>Software Quality Assurance Lead</li>
+                <li>Data Scientist / AI Engineer</li>
+                <li>Technical Consultant</li>
             </ul>
         
-            <!-- Why Choose M.Sc. ... -->
-            <h2><i class="fa-solid fa-school"></i> Why Choose M.Sc. Computer Science at AUCE</h2>
+            <h2><i class="fa-solid fa-award"></i> Why Choose IT&CA at AUCE?</h2>
             <ul class="program-details check-list">
-                <li>Part of a prestigious NAAC-A+ accredited university with decades of excellence.</li>
-                <li>Department established in 2018-19 with focus on emerging technologies.</li>
-                <li>Balanced exposure to industry and academic research.</li>
-                <li>Encourages participation in workshops, internships, and technical events.</li>
-                <li>Provides strong foundation for software careers and research pursuits.</li>
+                <li>Legacy of Excellence: Part of Andhra University, a NAAC A++ accredited institution with a 100-year history.</li>
+                <li>Strategic Location: Situated in Visakhapatnam, a growing IT hub, offering proximity to tech parks and startups.</li>
+                <li>Holistic Growth: Integration of technical clubs, hackathons, and cultural events for all-round development.</li>
+                <li>Competitive Edge: Training provided for national-level competitive exams and global certifications.</li>
             </ul>
         
-            <!-- Vision -->
-            <h2><i class="fa-solid fa-seedling"></i> Vision</h2>
-            <p>To produce skilled, innovative, and research-oriented computer professionals capable of contributing to technological growth and academic excellence.</p>
+            <h2><i class="fa-solid fa-eye"></i> Vision</h2>
+            <p>To be a globally recognized center of excellence in Information Technology and Computer Applications, empowering students to lead innovation and drive the digital transformation of society.</p>
 
-            <!-- NEW: Photo Gallery Section -->
-            <h2><i class="fa-solid fa-camera-retro"></i> Photo Gallery</h2>
+            <h2><i class="fa-solid fa-compass"></i> Mission</h2>
+            <p>To provide transformative education through advanced pedagogy, industry-aligned research, and a commitment to producing technically proficient and socially responsible IT leaders.</p>
+
+            <h2><i class="fa-solid fa-images"></i> Department Gallery</h2>
             <div class="photo-gallery">
-                
-                <img src="https://i.postimg.cc/Z559PmvY/4.jpg" 
-                     alt="Computer Lab" 
-                     onerror="this.src='https://placehold.co/800x400/1f2937/white?text=Image+Not+Found'">
-                <img src="https://i.postimg.cc/Nf3sFw8x/cse.jpg" 
-                     alt="Computer Lab" 
-                     onerror="this.src='https://placehold.co/800x400/1f2937/white?text=Image+Not+Found'">
-                <img src="https://i.postimg.cc/5Nssxxwj/MAN02662-342129290.jpg" 
-                     alt="University Campus" 
-                     onerror="this.src='https://placehold.co/800x400/3b82f6/white?text=Image+Not+Found'">
-                     
-                <img src="https://i.postimg.cc/6Q34LXSC/MAN02945-2029073282.jpg" 
-                     alt="Modern Classroom" 
-                     onerror="this.src='https://placehold.co/800x400/6b7280/white?text=Image+Not+Found'">
-                     
-                <img src="https://i.postimg.cc/3x73HFFx/MAN02953-2002291173.jpg" 
-                     alt="Lecture Hall" 
-                     onerror="this.src='https://placehold.co/800x400/3b82f6/white?text=Image+Not+Found'">
-                <img src="https://i.postimg.cc/SQ684qBf/12.jpg" 
-                     alt="Lecture Hall" 
-                     onerror="this.src='https://placehold.co/800x400/3b82f6/white?text=Image+Not+Found'">
+                <img src="https://i.postimg.cc/Z559PmvY/4.jpg" alt="Advanced IT Lab" onerror="this.src='https://placehold.co/800x400/1f2937/white?text=IT+Lab'">
+                <img src="https://i.postimg.cc/Nf3sFw8x/cse.jpg" alt="Department Building" onerror="this.src='https://placehold.co/800x400/1f2937/white?text=ITCA+Department'">
+                <img src="https://i.postimg.cc/5Nssxxwj/MAN02662-342129290.jpg" alt="AUCE Campus" onerror="this.src='https://placehold.co/800x400/3b82f6/white?text=AUCE+Campus'">
+                <img src="https://i.postimg.cc/6Q34LXSC/MAN02945-2029073282.jpg" alt="Smart Classroom" onerror="this.src='https://placehold.co/800x400/6b7280/white?text=Smart+Classroom'">
+                <img src="https://i.postimg.cc/3x73HFFx/MAN02953-2002291173.jpg" alt="Seminar Hall" onerror="this.src='https://placehold.co/800x400/3b82f6/white?text=Seminar+Hall'">
+                <img src="https://i.postimg.cc/SQ684qBf/12.jpg" alt="Innovation Hub" onerror="this.src='https://placehold.co/800x400/3b82f6/white?text=Innovation+Hub'">
             </div>
             
         </div>
@@ -134,4 +109,3 @@
 
 </body>
 </html>
-

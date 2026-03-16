@@ -8,7 +8,7 @@ int studentCount = 0;
 int userCount = 0; // Assuming you have a 'users' table
 int recordCount = 0;
 int notificationCount = 0; // Added count for notifications
-int staffcount=0;
+int staffcount = 0;
 
 Connection con = null;
 Statement stmt = null;
@@ -41,12 +41,11 @@ try {
 	rs = stmt.executeQuery("SELECT COUNT(*) FROM notification");
 	if (rs.next())
 		notificationCount = rs.getInt(1);
-	
+
 	// get NUMBER OF STAFF
 	rs = stmt.executeQuery("SELECT COUNT(*) FROM users where role='staff'");
 	if (rs.next())
 		staffcount = rs.getInt(1);
-	
 
 } catch (Exception e) {
 	e.printStackTrace(); // Log the error
@@ -241,24 +240,29 @@ try {
 					class="fas fa-user-shield"></i>
 					<p class="card-count"><%=userCount%></p>
 					<h3>User Management</h3>
-				</a> <a href="recordsManagement.jsp" class="management-card"> <i
+				</a> 
+				<%--<a href="recordsManagement.jsp" class="management-card"> <i
 					class="fas fa-file-alt"></i>
 					<p class="card-count"><%=recordCount%></p>
 					<h3>Records Management</h3>
-				</a> <a href="academicControl.jsp" class="management-card"> <i
+				</a> --%>
+				 <a href="academicControl.jsp" class="management-card"> <i
 					class="fas fa-university"></i> <%-- Removed count styles as there is no count --%>
 					<h3>Academic Control</h3>
 				</a> <a href="notifications.jsp" class="management-card"> <i
 					class="fas fa-bullhorn"></i>
 					<p class="card-count"><%=notificationCount%></p>
 					<h3>Manage Notifications</h3>
-				</a> 
-				<a href="manageStaff.jsp" class="management-card"> <i
+				</a> <a href="manageStaff.jsp" class="management-card"> <i
 					class="fas fa-chalkboard-teacher"></i>
 					<p class="card-count">
 						<%=staffcount%>
-					</p>
+					</p >
 					<h3>Manage Staff & Assignments</h3>
+				</a> 
+				<a href="${pageContext.request.contextPath}/adminViewAttendance.jsp" class="management-card"> <i class="fas fa-chart-line"></i>
+					<p class="card-count">3 </p > classes
+					<h3>Attendance Reports</h3>
 				</a>
 			</div>
 		</div>

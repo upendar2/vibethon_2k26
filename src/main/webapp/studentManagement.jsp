@@ -286,7 +286,7 @@
             <div class="section-header">
                 <h2><i class="fas fa-list-ul"></i> Existing Students</h2>
                 <%-- Corrected context path case --%>
-                <a href="${pageContext.request.contextPath}/studentregistration.jsp" class="btn" target="_blank"><i class="fas fa-user-plus"></i> Add New Student</a>
+                <a href="${pageContext.request.contextPath}/StudentRegistration/studentregistration.jsp" class="btn" target="_blank"><i class="fas fa-user-plus"></i> Add New Student</a>
             </div>
 
             <form action="studentManagement.jsp" method="get" class="search-bar">

@@ -1,6 +1,7 @@
 package com.example;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class DeleteStudentServlet extends HttpServlet {
         String status = "error";
         String regdNo = request.getParameter("regdno");
 
-        if (regdNo == null || regdNo.isEmpty()) {
+        if (regdNo == null || regdNo.trim().isEmpty()) {
             message = "Error: Registration number is missing.";
         } else {
             Connection con = null;
@@ -31,64 +32,66 @@ public class DeleteStudentServlet extends HttpServlet {
                 // --- Start Transaction ---
                 con.setAutoCommit(false);
 
-                // Step 1: Delete all grades associated with the student's results
-                // This deletes from the "grandchild" table first.
-                String deleteGradesSql = "DELETE FROM student_grades WHERE result_id IN (SELECT result_id FROM semester_results WHERE student_regn_no = ?)";
+                // 1. Delete Grades (Child of Results)
+                String deleteGradesSql = "DELETE FROM student_grades WHERE result_id IN " +
+                                         "(SELECT result_id FROM semester_results WHERE student_regn_no = ?)";
                 try (PreparedStatement psGrades = con.prepareStatement(deleteGradesSql)) {
                     psGrades.setString(1, regdNo);
                     psGrades.executeUpdate();
                 }
 
-                // Step 2: Delete all of the student's semester results
-                // This deletes from the "child" table.
+                // 2. Delete Semester Results
                 String deleteResultsSql = "DELETE FROM semester_results WHERE student_regn_no = ?";
                 try (PreparedStatement psResults = con.prepareStatement(deleteResultsSql)) {
                     psResults.setString(1, regdNo);
                     psResults.executeUpdate();
                 }
 
-                // Step 3: Finally, delete the student from the "parent" table
+                // 3. Delete Attendance
+                String deleteAttendanceSql = "DELETE FROM student_attendance WHERE regd_no = ?";
+                try (PreparedStatement psAttendance = con.prepareStatement(deleteAttendanceSql)) {
+                    psAttendance.setString(1, regdNo);
+                    psAttendance.executeUpdate();
+                }
+
+                // 4. Finally, Delete the Student
                 String deleteStudentSql = "DELETE FROM students WHERE regd_no = ?";
+                int rowsAffected = 0;
                 try (PreparedStatement psStudent = con.prepareStatement(deleteStudentSql)) {
                     psStudent.setString(1, regdNo);
-                    int rowsAffected = psStudent.executeUpdate();
-
-                    if (rowsAffected > 0) {
-                        status = "success";
-                        message = "Student with Registration No. " + regdNo + " and all associated data were deleted successfully.";
-                    } else {
-                        message = "Error: Could not find a student with Registration No. " + regdNo + ".";
-                    }
+                    rowsAffected = psStudent.executeUpdate();
                 }
-                
-                // --- If all deletes succeed, commit the changes ---
-                con.commit();
+
+                if (rowsAffected > 0) {
+                    // --- Commit changes only if the student was actually found and deleted ---
+                    con.commit();
+                    status = "success";
+                    message = "Student " + regdNo + " and all associated records deleted successfully.";
+                } else {
+                    con.rollback();
+                    message = "Error: Student not found.";
+                }
 
             } catch (SQLException e) {
-                message = "Database error during deletion: " + e.getMessage();
-                e.printStackTrace();
-                // --- If any step fails, roll back all changes ---
-                try {
-                    if (con != null) {
-                        con.rollback();
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
+                // --- If any step fails, roll back everything ---
+                if (con != null) {
+                    try { con.rollback(); } catch (SQLException ex) { ex.printStackTrace(); }
                 }
+                status = "error";
+                message = "Database error: " + e.getMessage();
+                e.printStackTrace();
             } finally {
-                // --- Clean up the connection ---
-                try {
-                    if (con != null) {
-                        con.setAutoCommit(true); // Return connection to its default state
+                // --- Clean up ---
+                if (con != null) {
+                    try {
+                        con.setAutoCommit(true);
                         con.close();
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
+                    } catch (SQLException ex) { ex.printStackTrace(); }
                 }
             }
         }
-        
-        // Redirect back to the student management page with a message
-        response.sendRedirect("studentManagement.jsp?status=" + status + "&message=" + java.net.URLEncoder.encode(message, "UTF-8"));
+
+        // Redirect with encoded message
+        response.sendRedirect("studentManagement.jsp?status=" + status + "&message=" + URLEncoder.encode(message, "UTF-8"));
     }
 }

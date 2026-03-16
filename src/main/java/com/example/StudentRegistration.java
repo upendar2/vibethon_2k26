@@ -119,8 +119,8 @@ public class StudentRegistration extends HttpServlet {
                 con.commit();
                 
                 // 6. Send Themed Email
-                String subject = "Registration Confirmed - Udbhav 2K26";
-                String body = "Dear " + name + ",\n\nYour registration for Udbhav 2K26 is successful.\nRegd No: " + regdno;
+                String subject = "Registration Confirmed From Department of INFORMATION TECHNOLOGY AND COMPUTER APPLICATIONS";
+                String body = "Dear " + name + ",\n\nYour registration as Student is successful.\nRegd No: " + regdno;
                 
                 EmailSender.sendEmail(email, subject, body);
                 out.write("Registration successful! Confirmation email sent to " + email);

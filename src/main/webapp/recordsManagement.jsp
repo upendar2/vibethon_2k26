@@ -203,7 +203,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="admin_header.jsp"%>
+	<%@ include file="staff_management/staff_header.jsp"%>
 
 	<main class="page-content">
 		<div class="container">

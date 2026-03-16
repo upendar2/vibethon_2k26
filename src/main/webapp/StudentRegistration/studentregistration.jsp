@@ -94,14 +94,9 @@
 						<div class="select-wrapper">
 							<select id="class" class="select-field" required name="class">
 								<option value="" disabled selected>----Select Type----</option>
-								<option value="M.SC COMPUTERS">M.SC COMPUTERS</option>
-								<option value="MCA COMPUTERS">MCA COMPUTERS</option>
-								<option value="M.SC APPLIED CHEMISTRY">M.SC APPLIED
-									CHEMISTRY</option>
-								<option value="MTECH-CSSE">MTECH-CSSE</option>
-								<option value="MTECH-ITCA">MTECH-ITCA</option>
-								<option value="MTECH-EEE">MTECH-EEE</option>
-								<option value="MTECH-ECE">MTECH-ECE</option>
+								<option value="MSC-CS">MSc Computer Science</option>
+								<option value="MCA">MCA</option>
+								<option value="BTECH-IT">B.Tech IT</option>
 							</select>
 						</div>
 					</div>
@@ -110,14 +105,7 @@
 						<div class="select-wrapper">
 							<select id="department" class="select-field" required name="dept">
 								<option value="" disabled selected>----Select Type----</option>
-								<option value="CSSE">CSSE</option>
 								<option value="ITCA">ITCA</option>
-								<option value="ECE">ECE</option>
-								<option value="CHEMICAL">CHEMICAL</option>
-								<option value="EEE">EEE</option>
-								<option value="MECHANICAL">MECHANICAL</option>
-								<option value="CIVIL">CIVIL</option>
-								<option value="MARINE">MARINE</option>
 							</select>
 						</div>
 					</div>

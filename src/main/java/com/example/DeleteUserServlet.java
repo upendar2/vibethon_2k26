@@ -31,12 +31,21 @@ public class DeleteUserServlet extends HttpServlet {
             PreparedStatement ps = null;
             try {
                 int userId = Integer.parseInt(idParam);
-                
-                // 2. Connect to the database and prepare the DELETE statement
                 con = DbConnection.getConne();
-                String sql = "DELETE FROM users WHERE id = ?";
+                String sql = "DELETE FROM student_attendence WHERE staff_id = ?";
                 ps = con.prepareStatement(sql);
                 ps.setInt(1, userId);
+                ps.executeUpdate();
+                 sql = "DELETE FROM staff_assignments WHERE staff_id = ?";
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, userId);
+                ps.executeUpdate();
+                // 2. Connect to the database and prepare the DELETE statement
+                 sql = "DELETE FROM users WHERE id = ?";
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, userId);
+                ps.executeUpdate();
+                
                 
                 // 3. Execute the deletion
                 int rowsAffected = ps.executeUpdate();
