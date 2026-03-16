@@ -11,7 +11,7 @@
             <img src="https://upload.wikimedia.org/wikipedia/en/c/c7/Andhra_University_logo.png" alt="University Logo" class="logo-img">
             <div class="university-brand">
                 <span class="univ-main">Andhra University College of Engineering</span>
-                <span class="univ-sub">Department of IT&CA</span>
+                <span class="univ-sub">Department of Information Technology and Computer Applications</span>
             </div>
         </div>
 
@@ -35,7 +35,7 @@
                     <i class="fa-solid fa-phone"></i>
                     <span>Contact Us</span>
                 </a>
-                <a href="${pageContext.request.contextPath}/login/login.jsp" class="header-button active">
+                <a href="${pageContext.request.contextPath}/login/login.jsp" class="header-button">
                     <i class="fa-solid fa-right-to-bracket"></i>
                     <span>Login</span>
                 </a>
@@ -50,7 +50,10 @@
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const headerActions = document.querySelector('.header-actions');
     const headerNav = document.querySelector('.header-nav');
+    const auText = document.querySelector(".univ-main"); // Use querySelector for a single element
+    const deptText = document.querySelector(".univ-sub"); // Use querySelector for a single element
 
+    // 1. Existing Mobile Menu Toggle Logic
     if (menuToggle && headerActions && headerNav) {
         menuToggle.addEventListener('click', () => {
             const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
@@ -58,4 +61,28 @@
             headerNav.classList.toggle('mobile-menu-open'); 
         });
     }
+
+    // 2. Dynamic Text Change Logic (AUCE on Mobile)
+    function handleMobileText(e) {
+        if (auText) {
+            if (e.matches) {
+                // Device is 768px or smaller
+                auText.innerHTML = "AUCE";
+                dept.innerHTML="Department of IT & CA";
+            } else {
+                // Device is Desktop
+                auText.innerHTML = "Andhra University College of Engineering";
+                dept.innerHTML="Department of Information Technology and Computer Applications"
+            }
+        }
+    }
+
+    // Define the media query (matching your CSS mobile breakpoint)
+    const mobileQuery = window.matchMedia("(max-width: 400px)");
+
+    // Run on initial load
+    handleMobileText(mobileQuery);
+
+    // Watch for screen size changes
+    mobileQuery.addEventListener("change", handleMobileText);
 </script>
