@@ -49,7 +49,7 @@
     
     <div class="user-info-area">
          <div class="welcome-text">
-            Welcome, <strong><%= studentHeaderUserName %></strong>
+            <strong><%= studentHeaderUserName %></strong>
         </div>
         
         <%-- Use context path for image source --%>

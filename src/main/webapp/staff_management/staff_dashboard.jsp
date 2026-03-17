@@ -162,10 +162,10 @@
                             <%-- 1. Manual Attendance --%>
                             <% if(!isSubmitted) { %>
                                 <a href="takeAttendance.jsp?sid=<%= subId %>&cls=<%= clsName %>&yr=<%= year %>" class="action-btn btn-take">
-                                    <i class="fas fa-keyboard"></i> Take
+                                    <i class="fas fa-keyboard"></i> Manual Attendance
                                 </a>
                                 <a href="generateQR.jsp?sid=<%= subId %>&cls=<%= clsName %>&yr=<%= year %>" class="action-btn btn-qr">
-                                    <i class="fas fa-qrcode"></i> QR
+                                    <i class="fas fa-qrcode"></i> QR Attendance
                                 </a>
                             <% } else { %>
                                 <div class="action-btn btn-locked"><i class="fas fa-lock"></i> Take</div>
@@ -174,17 +174,17 @@
 
                             <%-- 3. Visit History --%>
                             <a href="visitAttendance.jsp?sid=<%= subId %>&cls=<%= clsName %>&yr=<%= year %>" class="action-btn btn-visit">
-                                <i class="fas fa-history"></i> Visit
+                                <i class="fas fa-history"></i> Visit Attendance
                             </a>
 
                             <%-- 4. Manage Marks --%>
                             <a href="manageMarks.jsp?sid=<%= subId %>&cls=<%= clsName %>&yr=<%= year %>" class="action-btn btn-marks">
-                                <i class="fas fa-pen-to-square"></i> Marks
+                                <i class="fas fa-pen-to-square"></i>  Mid Marks
                             </a>
 
                             <%-- 5. NEW: Records/Notes Management --%>
                             <a href="${pageContext.request.contextPath}/recordsManagement.jsp?sid=<%= subId %>&cls=<%= clsName %>&yr=<%= year %>" class="action-btn btn-notes">
-                                <i class="fas fa-file-pdf"></i> Records
+                                <i class="fas fa-file-pdf"></i> Class Materials
                             </a>
                         </div>
                     </div>
