@@ -37,6 +37,7 @@
         .attendance-table td { padding: 12px; border-bottom: 1px solid #eee; }
         .status-present { color: var(--success-color); font-weight: 600; }
         .status-absent { color: var(--danger-color); font-weight: 600; }
+        
     </style>
 </head>
 <body>

@@ -34,7 +34,7 @@
         </a>
         
         <a href="<%= studentHeaderContextPath %>/studentAttendance.jsp" 
-           class="<%= currentPage.endsWith("studentAttendence.jsp") ? "active" : "" %>">
+           class="<%= currentPage.endsWith("studentAttendance.jsp") ? "active" : "" %>">
             Attendance
         </a>
         <a href="<%= studentHeaderContextPath %>/studentMarks.jsp" 
